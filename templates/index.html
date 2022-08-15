@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <form action="/add" method="post">
+        <textarea name="task" rows="5" placeholder="Enter your task"></textarea>
+        <button type="submit">Add</button>
+    </form>
+
+    <br>
+    <h2>Tasks</h2>
+
+    <div>
+        {% for todo in todos %}
+            <div class="task">
+                {% if todo.completed %}
+                    <strike>{{ todo.task }}</strike>
+                {% else %}
+                    {{ todo.task }}
+                {% endif %}
+                <small>
+                    <a href="edit/{{ todo.id }}">Edit</a>
+                    <a href="delete/{{ todo.id }}">Delete</a>
+                </small>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock content %}
